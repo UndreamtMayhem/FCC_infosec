@@ -5,6 +5,12 @@ const bodyParser = require('body-parser');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const session = require('express-session');
 const passport = require('passport');
+const ObjectID = require('mongodb').ObjectID;
+const mongo = require('mongodb').MongoClient;
+const LocalStrategy = require('passport-local');
+
+
+require('dotenv').config();
 
 const app = express();
 
@@ -23,11 +29,53 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.route('/')
-    .get((req, res) => {
-        res.render(process.cwd() + '/views/pug/index', { title: 'Hello', message: 'Please login' });
-    });
+mongo.connect(process.env.DATABASE, (err, db) => {
+    if (err) {
+        console.log('Database error: ' + err);
+    } else {
+        console.log('Successful database connection');
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Listening on port " + process.env.PORT);
+        passport.serializeUser((user, done) => {
+            done(null, user._id);
+        });
+
+        passport.deserializeUser((id, done) => {
+            db.collection('users').findOne({ _id: new ObjectID(id) },
+                (err, doc) => {
+                    done(null, doc);
+                }
+            );
+        });
+
+        passport.use(new LocalStrategy(
+            function(username, password, done) {
+                db.collection('users').findOne({ username: username }, function(err, user) {
+                    console.log('User ' + username + ' attempted to log in.');
+                    if (err) { return done(err); }
+                    if (!user) { return done(null, false); }
+                    if (password !== user.password) { return done(null, false); }
+                    return done(null, user);
+                });
+            }
+        ));
+
+        app.route('/')
+            .get((req, res) => {
+                res.render(process.cwd() + '/views/pug/index', { title: 'Hello', message: 'login', showLogin: true });
+            });
+
+        app.route('/login')
+            .post(passport.authenticate('local', { failureRedirect: '/' }), (req, res) => {
+                res.redirect('/profile');
+            });
+
+        app.route('/profile')
+            .get((req, res) => {
+                res.render(process.cwd() + '/views/pug/profile');
+            });
+
+        app.listen(process.env.PORT || 3000, () => {
+            console.log("Listening on port " + process.env.PORT);
+        });
+    }
 });
