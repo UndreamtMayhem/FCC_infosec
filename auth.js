@@ -2,6 +2,7 @@ const session = require('express-session');
 const passport = require('passport');
 const ObjectID = require('mongodb').ObjectID;
 const LocalStrategy = require('passport-local');
+var GitHubStrategy = require('passport-github').Strategy;
 const bcrypt = require('bcrypt');
 
 module.exports = function(app, db) {
