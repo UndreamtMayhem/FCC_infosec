@@ -1,6 +1,6 @@
-mixin list(id, ...items)
+mixin list(...items)
     each item in items
-        a.item=item
+        a(href="/"+item class='item')=item
 
 
-+list('my-list', 'Length', 'Weight & Capacity', 'Metric', 'Imperial', 'API')
++list('Length', 'Weight', 'Capacity', 'Metric', 'Imperial', 'API')
