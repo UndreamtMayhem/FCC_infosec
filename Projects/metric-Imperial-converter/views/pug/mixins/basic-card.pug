@@ -1,0 +1,30 @@
+mixin basicCard(title, ...items)
+    h3.ui.header=title
+    .ui.grid
+        
+        each item in items
+            .eight.wide.column
+                .ui.card
+                    .content
+                        .header 
+                            a(href="#")=item
+       
++basicCard('Weight', 
+            'kilograms', 'pounds', 
+            'ounce', 'miligrams', 'grams',
+            'stone',
+            'ton')
++basicCard('Capacity', 
+            'fluid-ounce', 'mililitres', 
+            'pints', 'centilitre', 'gallons',
+            'litre')
+
++basicCard('Temperature', 'farenheit', 'celsius')
+
+
++basicCard('Length', 'meters', 'feet', 
+            'yards',
+            'inches', 'centimeters', 
+            'milimeters', 
+            'furlongs',
+            'km', 'miles')
