@@ -1,3 +1,6 @@
+const apiRoutes = require('./api/api');
+
+
 module.exports = function(app, db) {
     app.route('/')
         .get((req, res) => {
@@ -6,14 +9,10 @@ module.exports = function(app, db) {
 
             });
         });
+    // Route Files
+    apiRoutes(app);
 
-    app.route('/api')
-        .get((req, res) => {
-            res.render(process.cwd() + '/views/pug/pages/api', {
-                title: 'API',
 
-            });
-        });
 
     app.route('/capacity')
         .get((req, res) => {

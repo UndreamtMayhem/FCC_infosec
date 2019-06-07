@@ -5,4 +5,14 @@ block content
     
     
         
-        h3 to be implemented
+
+        .ui.container
+                .ui.inverted.left.aligned.segment
+                        h2 temp
+                        form.ui.huge.form(action="/travellers" method="POST" id="f1")
+                                .two.fields
+                                        .field
+                                                input(type='text' placeholder='First Name')
+                                        .field
+                                                input(type='text' placeholder='Last Name')
+                                button.ui.primary.submit.huge.button Submit
