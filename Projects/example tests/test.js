@@ -1,34 +1,55 @@
 var chai = require('chai');
 var assert = chai.assert;
 
-var server = require('../server'); /** import the Express app **/
+var server = require('../myApp'); /** import the Express app **/
 
 var chaiHttp = require('chai-http'); /** require the chai-http plugin **/
 chai.use(chaiHttp); /** use the chai-http plugin **/
-
+let should = chai.should();
 
 suite('Functional Tests', function() {
 
-    // Mocha allows testing asyncronous operations.
-    // There is a small (BIG) difference. Can you spot it ?
-
-    // ### EXAMPLE ### 
-    test('Asynchronous test #example', function(done) { /** <= Pass a callback to the test function **/
-        setTimeout(function() {
-            assert.isOk('Async test !!');
-            done(); /** Call 'done()' when the async operation is completed**/
-        }, 500); // the function will be executed after 500ms
-    });
-
     // NOTE: The tests having #example in their description string,
     // are instructional examples and are not parsed by our test analyser
+    suite('HomePage routes', function() {
 
+        // ### EXAMPLE ### 
+        suite('GET index', function() {
+
+            // We send a name string in the url query string.
+            test('/', function(done) { // Don't forget the callback...
+                chai.request(server) // 'server' is the Express App
+                    .get('/capacity') // http_method(url)
+                    .end(function(err, res) { // Send the request. Pass a callback in
+                        // node style. `res` is the response object
+                        // res.status contains the status code
+                        assert.equal(res.status, 200, 'response status should be 200');
+                        //res.should.have.status(200);
+                        // res.text contains the response as a string
+                        //assert.equal(res.text, 'hello John', 'response should be "hello John"');
+                        done();
+                    });
+            });
+
+
+
+        });
+
+
+
+    });
     suite('Integration tests with chai-http', function() {
         // We can test our API endpoints using a plugin, called chai-http.
         // Let's see how it works. And remember, API calls are asynchronous...
 
         // ### EXAMPLE ### 
         suite('GET /hello?name=[name] => "hello [name]"', function() {
+
+
+
+
+
+
             // We send a name string in the url query string.
             test('#example - ?name=John', function(done) { // Don't forget the callback...
                 chai.request(server) // 'server' is the Express App
@@ -75,6 +96,7 @@ suite('Functional Tests', function() {
                         done(); // Always call the 'done()' callback when finished.
                     });
             });
+
 
         });
 

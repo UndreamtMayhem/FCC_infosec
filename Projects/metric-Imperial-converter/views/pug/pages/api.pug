@@ -4,15 +4,9 @@ extends ../layout.pug
 block content
     
     
+        include ../mixins/basic-form.pug
         
 
         .ui.container
-                .ui.inverted.left.aligned.segment
-                        h2 temp
-                        form.ui.huge.form(action="/travellers" method="POST" id="f1")
-                                .two.fields
-                                        .field
-                                                input(type='text' placeholder='First Name')
-                                        .field
-                                                input(type='text' placeholder='Last Name')
-                                button.ui.primary.submit.huge.button Submit
+                +createForm('temperture', 'home', 'GET', 'F', 'C')
+                
