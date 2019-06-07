@@ -1,10 +1,9 @@
-mixin createForm(title, action, method="POST",frmField1, frmField2)
+mixin createForm(id, title, action, method="POST",frmField1, msg)
     .ui.inverted.left.aligned.segment
         h2=title
         form.ui.huge.form(action=action method=method id="f1")
-                .two.fields
-                        .field
-                                input(type='text' placeholder=frmField1 id=frmField1)
-                        .field
-                                input(type='text' placeholder=frmField2, id=frmField2)
-                button.ui.primary.submit.huge.button Submit
+               
+                .field
+                        input(type='text' name=frmField1 placeholder=frmField1 id=frmField1)
+                p=msg
+                button.ui.primary.submit.huge.button(id=id) Submit

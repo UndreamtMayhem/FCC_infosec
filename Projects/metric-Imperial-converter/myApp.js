@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+const bodyParser = require('body-parser');
 const routes = require('./routes/routes.js');
 
 /** Security */
@@ -45,6 +45,15 @@ app.use(helmet.contentSecurityPolicy({
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.disable('strict-transport-security');
+
+
+// Body Parser Middleware parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+// parse application/json
+app.use(bodyParser.json());
 
 
 routes(app);
