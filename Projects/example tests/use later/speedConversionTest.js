@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test';
 var chai = require('chai');
 var assert = chai.assert;
-var speed = require('../lib/speed');
+var speed = require('../../metric-Imperial-converter/lib/speed');
 var speed = new speed();
 
 
