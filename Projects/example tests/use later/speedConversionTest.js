@@ -32,6 +32,7 @@ describe('Speed conversion kphToMph', function() {
             assert.equal(speed.kphToMph(1.000), 0.62, ' 1.000 kph = 0.62 mph ');
         });
     });
+
     describe('testing negative decimal precision', function() {
 
         it('using single value e.g -1 should return -0.62 mph', function() {
@@ -54,7 +55,6 @@ describe('Speed conversion kphToMph', function() {
                 assert.equal(speed.kphToMph(i), testValues[i], 'incorrect conversion ');
             });
         }
-
     });
 });
 
@@ -100,7 +100,6 @@ describe('Speed conversion mphToKph', function() {
         });
     });
 
-
     describe('testing correctness', function() {
 
         var testValues = speed.kphToMphTestValues();
@@ -112,5 +111,4 @@ describe('Speed conversion mphToKph', function() {
             });
         }
     });
-
 });
