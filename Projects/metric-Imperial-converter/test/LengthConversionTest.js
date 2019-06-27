@@ -42,7 +42,16 @@ describe('Length conversion meterTofeet', function() {
         });
     });
 
+    describe('testing correctness', function() {
 
+        var testValues = length.meterTofeetTestValues();
+
+        for (var i in testValues) {
+            it(`kph ${i}  = ${testValues[i]}`, function() {
+                assert.equal(length.meterTofeet(i), testValues[i], 'incorrect conversion ');
+            });
+        }
+    });
 
 
 });
