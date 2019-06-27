@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var expect = chai.expect;
-var server = require('../myApp'); /** import the Express app **/
+var server = require('../../metric-Imperial-converter/myApp'); /** import the Express app **/
 
 var chaiHttp = require('chai-http'); /** require the chai-http plugin **/
 chai.use(chaiHttp); /** use the chai-http plugin **/
