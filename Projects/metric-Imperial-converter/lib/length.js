@@ -1,7 +1,7 @@
 module.exports = function() {
 
     this.meterTofeet = function(m) {
-        return m * 3.2808;
+        return (m * 3.2808).toFixed(2);
     }
 
     this.feetToMeter = function(fy) {
