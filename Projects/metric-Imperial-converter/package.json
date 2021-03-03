@@ -14,7 +14,7 @@
         "fomantic-ui-css": "^2.7.5",
         "gulp": "^4.0.2",
         "helmet": "^3.18.0",
-        "pug": "^2.0.3",
+        "pug": "^3.0.1",
         "require-dot-file": "^0.4.0"
     },
     "devDependencies": {
