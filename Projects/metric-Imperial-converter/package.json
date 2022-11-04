@@ -22,7 +22,7 @@
         "chai-http": "^2.0.1",
         "gulp-help": "^1.6.1",
         "express-validator": "^4",
-        "mocha": "^2.4.5",
+        "mocha": "^10.1.0",
         "zombie": "^4.2.1"
     },
     "engines": {
